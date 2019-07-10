@@ -45,13 +45,13 @@ This section of the page provides the general, read only, settings of the wallet
 Credentials
 ===============
 
-This section provides access for you to modify, backup, and restore Verto credentials.
+This section provides access for you to modify, backup, and restore Verto credentials and config information.
 
 .. image:: img/credentials.png
    :alt: Create Verto Wallet
    :align: center
 
-The three options are:
+The three options available are:
 
 1. Change Password: Change the Verto password. For more information on changing your password, please see here:
 
@@ -74,3 +74,10 @@ For more information on retoring your config, please see the following:
    :maxdepth: 1
 
    restoreConfig.rst
+
+4. Edit vDex Url: Allows you to configure a running instance of vDex in order unlock additional features.
+
+.. toctree::
+   :maxdepth: 1
+
+   editVdexUrl.rst

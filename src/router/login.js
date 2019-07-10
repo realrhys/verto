@@ -90,7 +90,7 @@ export default [
       {
         name: 'restore-wallet',
         path: 'restore-wallet/:returnto',
-        component: () => import('pages/Wallet/RestoreWallet.vue'),
+        component: () => import('pages/Settings/RestoreWallet.vue'),
         meta: {}
       }
     ]

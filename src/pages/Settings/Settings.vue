@@ -10,18 +10,44 @@
     </q-card>
     <q-card class="q-pa-sm bg-black" flat style="max-width: 500px; width: 100%;">
       <q-card-section class="text-center settings-border">
-        <big class="titillium text-uppercase">General</big>
-        <p>Version:
+        <div class="q-pa-sm">
+          <big class="titillium text-uppercase">Version</big>
+          <br>
           <span class="text-h6 q-pa-lg">
             {{ version }}
           </span>
-        </p>
-        <p>Config Path:
+        </div>
+        <hr>
+        <div class="q-pa-sm">
+          <big class="titillium text-uppercase">Config Path</big>
+          <br>
           <span class="break-word text-h6 q-pa-lg">
             {{ configPath }}
           </span>
-        </p>
-        <p>Network:
+        </div>
+        <!--
+        <hr>
+        <div class="q-pa-sm">
+          <big class="titillium text-uppercase">vDex URL</big>
+            <br>
+            <span class="break-word text-h6 q-pa-lg">
+              {{ vdexUrl }}
+
+                <q-input
+                  v-model="vdexUrl"
+                  type="url"
+                  dark
+                  color="green"
+                  :label="$t('SettingsView.vdex_url')"
+                />
+            </span>
+        </div>
+        -->
+        <hr>
+        <div class="q-pa-sm">
+          <big class="titillium text-uppercase">Network</big>
+          <br>
+          <br>
           <q-btn-toggle
             v-model="network"
             glossy
@@ -31,43 +57,54 @@
               {label: 'Test Net', value: 'testnet'}
             ]"
           />
-        </p>
-      </q-card-section>
-      <br>
-      <q-card-section class="text-left settings-border">
-        <div class="text-weight-bold text-center">
-          <big class="titillium text-uppercase">Credentials</big>
         </div>
-        <div class='text-center'>
-          <div class='q-pa-md'>
-            <q-btn class='full-width'
-              outline
-              glossy
-              dense @click.native="goChangePassword"
-            >
-              {{ $t('SettingsView.change_password') }}
+        <hr>
+        <div class="q-pa-sm">
+          <big class="titillium text-uppercase">vDex URL</big>
+          <br>
+          <span class="break-word text-h6 q-pa-lg">
+            {{ vdexUrl }}
+          </span>
+        </div>
+        <div class='q-pa-md'>
+          <q-btn class='full-width'
+            outline
+            glossy
+            dense
+            @click.native="$router.push({name:'edit-vdex-url', params: {}})"
+          >
+            <span class="text-h5">Edit</span>
+          </q-btn>
+        </div>
+        <hr>
+        <div class='q-pa-md'>
+          <q-btn class='full-width'
+            outline
+            glossy
+            dense @click.native="goChangePassword"
+          >
+            <span class="text-h5">{{ $t('SettingsView.change_password') }}</span>
+          </q-btn>
+        </div>
+        <div class='q-pa-md'>
+          <q-btn class='full-width'
+            outline
+            glossy
+            dense
+            @click.native="backupConfig"
+          >
+            <span class="text-h5">{{ $t('SettingsView.backup_config') }}</span>
             </q-btn>
-          </div>
-          <div class='q-pa-md'>
-            <q-btn class='full-width'
-              outline
-              glossy
-              dense
-              @click.native="backupConfig"
-            >
-                {{ $t('SettingsView.backup_config') }}
-              </q-btn>
-          </div>
-          <div class='q-pa-md'>
-            <q-btn class='full-width'
-              outline
-              glossy
-              dense
-              @click.native="$router.push({name:'restore-wallet', params: {returnto: 'settings'}})"
-            >
-              {{ $t('SettingsView.restore_config') }}
-            </q-btn>
-          </div>
+        </div>
+        <div class='q-pa-md'>
+          <q-btn class='full-width'
+            outline
+            glossy
+            dense
+            @click.native="$router.push({name:'restore-wallet', params: {returnto: 'settings'}})"
+          >
+            <span class="text-h5">{{ $t('SettingsView.restore_config') }}</span>
+          </q-btn>
         </div>
       </q-card-section>
     </q-card>
@@ -88,16 +125,28 @@ export default {
       message: '',
       version: {},
       network: this.$store.state.settings.network,
-      configPath: ''
+      configPath: '',
+      vdexUrl: ''
     }
   },
   mounted () {
     this.version = version
     this.setupPlatformPath()
+    this.getVdexUrl()
+    console.log(JSON.stringify(this.$store.state.currentwallet.config, null, 4))
   },
   methods: {
     async setupPlatformPath () {
       this.configPath = await platformTools.filePath()
+    },
+    async getVdexUrl () {
+      const data = this.$store.state.currentwallet.config.data
+      this.vdexUrl = 'NONE'
+      if (data) {
+        if (data.vdex) {
+          this.vdexUrl = data.vdex.url
+        }
+      }
     },
     goChangePassword: function () {
       this.$router.push({ path: '/change-password' })

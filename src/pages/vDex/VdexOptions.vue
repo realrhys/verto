@@ -3,7 +3,7 @@
     <q-card class="bg-black" style="max-width: 500px;" flat>
       <q-card-section>
         <div class="text-h6">
-          More vDexNode information will be available in this tab coming soon.
+          VDex Options
         </div>
       </q-card-section>
     </q-card>

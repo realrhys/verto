@@ -202,7 +202,7 @@
         "language": "Language",
         "help": "Help",
         "exchange": "Exchange",
-        "vdexnodes": "vDexNodes",
+        "vdexnodes": "vDex",
         "optionsdd": " Options",
         "vespucci_open": "Vespucci Open",
         "current_wallet": "Current Wallet",
@@ -211,7 +211,9 @@
         "restore_config": "Restore config",
         "file_chooser": "Choose File with + sign then Upload with cloud icon.",
         "support": "Support",
-        "go_back": "Back"
+        "go_back": "Back",
+        "vdex_url": "Enter the URL of your vDex node.",
+        "edit_vdex_url": "Edit vDex URL"
     },
     "AssociateView": {
         "username": "Blocktopus Username",

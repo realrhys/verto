@@ -93,9 +93,27 @@ export default [
         }
       },
       {
-        name: 'vdexnodes',
-        path: '/vdexnodes',
-        component: () => import('pages/vDex/Nodes.vue'),
+        name: 'begin-vdex',
+        path: 'begin-vdex',
+        component: () => import('pages/vDex/BeginVdex.vue'),
+        meta: {
+          authRequired: true,
+          needskeyscreated: true
+        }
+      },
+      {
+        name: 'vdex-options',
+        path: 'vdex-options',
+        component: () => import('pages/vDex/VdexOptions.vue'),
+        meta: {
+          authRequired: true,
+          needskeyscreated: true
+        }
+      },
+      {
+        name: 'vdex-install-instructions',
+        path: 'vdex-install-instructions',
+        component: () => import('pages/vDex/VdexInstallInstructions.vue'),
         meta: {
           authRequired: true,
           needskeyscreated: true
@@ -113,7 +131,7 @@ export default [
       {
         name: 'change-password',
         path: 'change-password',
-        component: () => import('pages/Wallet/ChangePassword.vue'),
+        component: () => import('pages/Settings/ChangePassword.vue'),
         meta: {
           authRequired: true,
           needskeyscreated: true
@@ -149,7 +167,13 @@ export default [
       {
         name: 'restore-wallet',
         path: 'restore-wallet/:returnto',
-        component: () => import('pages/Wallet/RestoreWallet.vue'),
+        component: () => import('pages/Settings/RestoreWallet.vue'),
+        meta: {}
+      },
+      {
+        name: 'edit-vdex-url',
+        path: 'edit-vdex-url',
+        component: () => import('pages/Settings/EditVdexUrl.vue'),
         meta: {}
       },
       {
